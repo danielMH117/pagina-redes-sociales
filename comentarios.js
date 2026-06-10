@@ -75,4 +75,5 @@ formComentario.addEventListener('submit', function(e) {
     contador.textContent = '0 / 280';
 });
 
+// Inicializar la lista al cargar la página
 mostrarComentarios();

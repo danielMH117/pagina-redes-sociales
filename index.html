@@ -3,210 +3,348 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacidad y Seguridad Digital</title>
-    <link rel="stylesheet" href="estilos.css">
+    <title>Privacidad y Seguridad en Redes Sociales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F3460',
+                        secondary: '#16213E',
+                        accent: '#E94560',
+                        light: '#F8FAFC',
+                        dark: '#1A1A2E',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Segoe UI', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                background-image: linear-gradient(90deg, #0F3460, #E94560);
+            }
+            .card {
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            }
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+            }
+            .tab-content {
+                display: none;
+            }
+            .tab-content.active {
+                display: block;
+                animation: fadeIn 0.5s ease;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .img-hover {
+                transition: transform 0.4s ease;
+            }
+            .img-hover:hover {
+                transform: scale(1.03);
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="bg-light text-dark font-sans">
 
-    <header class="hero">
-        <nav class="navbar">
-            <div class="logo">🛡️ Cyber<span class="accent">Secure</span></div>
-            <ul class="nav-links">
-                <li><a href="#privacidad">Privacidad</a></li>
-                <li><a href="#riesgos">Riesgos</a></li>
-                <li><a href="#proteccion">Protección</a></li>
-                <li><a href="#legales">Marco Legal</a></li>
-                <li><a href="#datos">Estadísticas</a></li>
-                <li><a href="#comentarios">Debate</a></li>
-            </ul>
-        </nav>
-        <div class="hero-content">
-            <span class="cyber-badge">AUDITORÍA DE CONCIENTIZACIÓN 2026</span>
-            <h1>La Identidad Digital No Es Un Juego</h1>
-            <p>Tu información está expuesta. Aprende a proteger tu infraestructura personal y a blindar tus redes sociales contra amenazas modernas.</p>
-            <div class="hero-buttons">
-                <a href="#privacidad" class="btn btn-primary">Iniciar Análisis</a>
-                <a href="#comentarios" class="btn btn-secondary">Comunidad</a>
-            </div>
+    <!-- Encabezado -->
+    <header class="bg-gradient-to-r from-primary via-secondary to-dark text-white py-16 px-4 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" alt="Fondo" class="w-full h-full object-cover">
+        </div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">🔒 Privacidad y Seguridad</h1>
+            <p class="text-xl md:text-2xl opacity-90">Protege tu identidad en el mundo digital</p>
         </div>
     </header>
 
-    <section id="privacidad" class="split-section light-bg">
-        <div class="container split-container">
-            <div class="split-text">
-                <span class="section-tag">CONCEPTOS CRÍTICOS</span>
-                <h2>¿Qué es la privacidad digital?</h2>
-                <p>La privacidad digital no se limita al simple acto de ocultar información; es un derecho humano fundamental conocido en el ámbito del derecho informático como <strong>autodeterminación informativa</strong>.</p>
-                <p>Se define como la potestad jurídica y técnica que tiene un individuo para decidir cuánta información sobre sí mismo está dispuesto a compartir con terceros y qué control mantiene sobre esos datos.</p>
-                
-                <div class="highlight-box">
-                    <strong>Dimensión PII:</strong> Protege datos de identificación fundamentales, registros biométricos y transacciones financieras contra el rastreo masivo e indexación no autorizada.
-                </div>
-            </div>
-            <div class="split-image" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=650');"></div>
-        </div>
-    </section>
+    <main class="max-w-6xl mx-auto px-4 py-12">
 
-    <section id="riesgos" class="split-section dark-bg">
-        <div class="container split-container reverse">
-            <div class="split-text">
-                <span class="section-tag tag-alert">VECTORES DE ATAQUE</span>
-                <h2>Riesgos Críticos en Redes Sociales</h2>
-                <p>Las plataformas sociales son el escenario ideal para la ingeniería social debido a la enorme cantidad de información que los usuarios exponen voluntariamente sin controles previos.</p>
-                
-                <div class="riesgos-list">
-                    <div class="riesgo-item">
-                        <span class="riesgo-num">01</span>
-                        <div>
-                            <h4>Phishing Avanzado</h4>
-                            <p>Suplantación de identidad visual mediante sitios espejo para el robo de credenciales de acceso.</p>
+        <!-- Navegación por pestañas -->
+        <div class="mb-12 bg-white rounded-2xl p-3 shadow-lg flex flex-wrap justify-center gap-3">
+            <button onclick="openTab('que-es')" id="tab-que-es" class="tab-btn px-6 py-3 rounded-xl font-medium bg-primary text-white shadow-md hover:shadow-lg transition-shadow">¿Qué es?</button>
+            <button onclick="openTab('riesgos')" id="tab-riesgos" class="tab-btn px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition-colors">Riesgos</button>
+            <button onclick="openTab('proteccion')" id="tab-proteccion" class="tab-btn px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition-colors">Protección</button>
+            <button onclick="openTab('legal')" id="tab-legal" class="tab-btn px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition-colors">Marco Legal</button>
+            <button onclick="openTab('datos')" id="tab-datos" class="tab-btn px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition-colors">Datos & Caso</button>
+            <button onclick="openTab('comentarios')" id="tab-comentarios" class="tab-btn px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition-colors">Comentarios</button>
+        </div>
+
+        <!-- Sección 1: ¿Qué es la privacidad digital? -->
+        <section id="que-es" class="tab-content active">
+            <div class="bg-white rounded-2xl p-8 card">
+                <div class="flex flex-col lg:flex-row gap-10 items-center">
+                    <div class="lg:w-1/2">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gradient mb-5">¿Qué es la privacidad digital?</h2>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                            Es tu derecho a decidir qué compartes, con quién y mantener el control sobre tus datos. También se conoce como <strong>autodeterminación informativa</strong>.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <i class="fa fa-user-shield text-accent text-2xl mt-1"></i>
+                                <span><strong>Datos personales:</strong> Protege tu nombre, documentos y finanzas.</span>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i class="fa fa-search text-accent text-2xl mt-1"></i>
+                                <span><strong>Comportamiento:</strong> Nadie debe rastrear tus búsquedas o ubicación.</span>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i class="fa fa-envelope text-accent text-2xl mt-1"></i>
+                                <span><strong>Comunicaciones:</strong> Tus mensajes privados son inviolables.</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="riesgo-item">
-                        <span class="riesgo-num">02</span>
-                        <div>
-                            <h4>Doxxing y Scraping</h4>
-                            <p>Recopilación automatizada de datos privados para su posterior publicación maliciosa o extorsión.</p>
+                    <div class="lg:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" 
+                             alt="Privacidad digital" class="w-full rounded-xl shadow-lg img-hover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Riesgos en redes sociales -->
+        <section id="riesgos" class="tab-content">
+            <div class="bg-white rounded-2xl p-8 card">
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient mb-8 text-center">⚠️ Principales Riesgos</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-500 card">
+                        <img src="https://images.unsplash.com/photo-1563986768860-3e5e2269289b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Phishing" class="w-full h-40 object-cover rounded-lg mb-4 img-hover">
+                        <h3 class="font-bold text-xl text-red-700 mb-2">Phishing</h3>
+                        <p class="text-gray-700">Páginas falsas que imitan redes oficiales para robar tus contraseñas.</p>
+                    </div>
+                    <div class="bg-orange-50 p-6 rounded-xl border-l-4 border-orange-500 card">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e73e5354116?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Suplantación" class="w-full h-40 object-cover rounded-lg mb-4 img-hover">
+                        <h3 class="font-bold text-xl text-orange-700 mb-2">Suplantación de Identidad</h3>
+                        <p class="text-gray-700">Clonan tu perfil para pedir dinero o dañar tu reputación.</p>
+                    </div>
+                    <div class="bg-yellow-50 p-6 rounded-xl border-l-4 border-yellow-500 card">
+                        <img src="https://images.unsplash.com/photo-1560326689-12289936d683?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Doxxing" class="w-full h-40 object-cover rounded-lg mb-4 img-hover">
+                        <h3 class="font-bold text-xl text-yellow-700 mb-2">Doxxing</h3>
+                        <p class="text-gray-700">Divulgación de tu dirección o datos personales para acosarte.</p>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-xl border-l-4 border-purple-500 card">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ataques IA" class="w-full h-40 object-cover rounded-lg mb-4 img-hover">
+                        <h3 class="font-bold text-xl text-purple-700 mb-2">Ataques con IA</h3>
+                        <p class="text-gray-700">Videos o voces falsas muy realistas para engañar o extorsionar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: Cómo protegerte -->
+        <section id="proteccion" class="tab-content">
+            <div class="bg-white rounded-2xl p-8 card">
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient mb-8 text-center">🛡️ ¿Cómo protegerte?</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-6 border-2 border-gray-100 rounded-xl hover:border-primary transition-colors card">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Autenticación" class="w-full h-36 object-cover rounded-lg mb-4 img-hover">
+                        <h3 class="font-semibold text-lg mb-2">Verificación en dos pasos</h3>
+                        <p class="text-sm text-gray-600">Usa aplicaciones de seguridad, evita mensajes de texto.</p>
+                    </div>
+                    <div class="p-6 border-2 border-gray-100 rounded-xl hover:border-primary transition-colors card">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Contraseñas" class="w-full h-36 object-cover rounded-lg mb-4 img-hover">
+                        <h3 class="font-semibold text-lg mb-2">Contraseñas únicas</h3>
+                        <p class="text-sm text-gray-600">No repitas claves. Usa un gestor seguro.</p>
+                    </div>
+                    <div class="p-6 border-2 border-gray-100 rounded-xl hover:border-primary transition-colors card">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Configuración" class="w-full h-36 object-cover rounded-lg mb-4 img-hover">
+                        <h3 class="font-semibold text-lg mb-2">Perfil privado</h3>
+                        <p class="text-sm text-gray-600">Limita quién ve tus publicaciones y datos.</p>
+                    </div>
+                    <div class="p-6 border-2 border-gray-100 rounded-xl hover:border-primary transition-colors card">
+                        <img src="https://images.unsplash.com/photo-1506399558188-acca6f8cbf41?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ubicación" class="w-full h-36 object-cover rounded-lg mb-4 img-hover">
+                        <h3 class="font-semibold text-lg mb-2">Sin ubicación</h3>
+                        <p class="text-sm text-gray-600">Apaga la geolocalización en fotos y publicaciones.</p>
+                    </div>
+                    <div class="p-6 border-2 border-gray-100 rounded-xl hover:border-primary transition-colors card">
+                        <img src="https://images.unsplash.com/photo-1510511459019-5784a7aa41c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Enlaces" class="w-full h-36 object-cover rounded-lg mb-4 img-hover">
+                        <h3 class="font-semibold text-lg mb-2">Cuidado con enlaces</h3>
+                        <p class="text-sm text-gray-600">No abras enlaces de remitentes desconocidos.</p>
+                    </div>
+                    <div class="p-6 border-2 border-gray-100 rounded-xl hover:border-primary transition-colors card">
+                        <img src="https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Actualizaciones" class="w-full h-36 object-cover rounded-lg mb-4 img-hover">
+                        <h3 class="font-semibold text-lg mb-2">Mantén todo actualizado</h3>
+                        <p class="text-sm text-gray-600">Corrige fallos de seguridad automáticamente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: Consecuencias legales -->
+        <section id="legal" class="tab-content">
+            <div class="bg-white rounded-2xl p-8 card">
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient mb-8 text-center">⚖️ Marco Legal en México</h2>
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="lg:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Leyes" class="w-full rounded-xl shadow-lg img-hover mb-6">
+                    </div>
+                    <div class="lg:w-1/2 space-y-5">
+                        <div class="bg-blue-50 p-5 rounded-xl border-l-4 border-primary">
+                            <h3 class="font-semibold text-primary text-lg mb-1">Artículo 211 Bis</h3>
+                            <p class="text-gray-700">Acceder sin permiso a cuentas se castiga con <strong>6 meses a 2 años de prisión</strong>.</p>
+                        </div>
+                        <div class="bg-pink-50 p-5 rounded-xl border-l-4 border-accent">
+                            <h3 class="font-semibold text-accent text-lg mb-1">Ley Olimpia</h3>
+                            <p class="text-gray-700">Difundir contenido íntimo sin consentimiento: <strong>3 a 6 años de prisión</strong>.</p>
+                        </div>
+                        <div class="bg-green-50 p-5 rounded-xl border-l-4 border-green-500">
+                            <h3 class="font-semibold text-green-700 text-lg mb-1">Suplantación de identidad</h3>
+                            <p class="text-gray-700">Crear perfiles falsos para dañar tiene penas de <strong>1 a 4 años de cárcel</strong>.</p>
                         </div>
                     </div>
-                    <div class="riesgo-item">
-                        <span class="riesgo-num">03</span>
-                        <div>
-                            <h4>Suplantación e IA</h4>
-                            <p>Uso de Deepfakes y clonación de voz (Vishing) para vulnerar la confianza de círculos cercanos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 5: Datos, Caso y Referencias -->
+        <section id="datos" class="tab-content">
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+                <!-- Datos Impactantes -->
+                <div class="bg-white rounded-2xl p-7 card">
+                    <h3 class="text-2xl font-bold text-gradient mb-6 text-center">📊 Datos Impactantes</h3>
+                    <div class="space-y-6">
+                        <div class="p-5 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl text-center">
+                            <span class="text-4xl font-bold text-primary">40,600 M</span>
+                            <p class="text-gray-600 mt-2">Intentos de ciberataques en México en 6 meses</p>
+                        </div>
+                        <div class="p-5 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl text-center">
+                            <span class="text-4xl font-bold text-orange-600">74%</span>
+                            <p class="text-gray-600 mt-2">De fallas ocurren por error humano</p>
+                        </div>
+                        <div class="p-5 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl text-center">
+                            <span class="text-xl font-bold text-purple-600">Menos de $15 USD</span>
+                            <p class="text-gray-600 mt-2">Costo de lotes de datos robados en la red oscura</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="split-image graphic-border" style="background-image: url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=650');"></div>
-        </div>
-    </section>
 
-    <section id="proteccion" class="grid-section clear-bg">
-        <div class="container">
-            <div class="center-title">
-                <span class="section-tag">CONTRAMEDIDAS</span>
-                <h2>Estrategia de Defensa en Capas</h2>
-                <p>Blindar tu entorno digital no requiere software costoso, sino la adopción de una postura de seguridad activa.</p>
-            </div>
-            
-            <div class="protection-grid">
-                <div class="proto-card">
-                    <div class="proto-icon">🔑</div>
-                    <h3>2FA Criptográfica</h3>
-                    <p>Sustituye el doble factor por SMS (vulnerable a SIM Swapping) por aplicaciones TOTP como Google Authenticator o llaves físicas.</p>
-                </div>
-                <div class="proto-card">
-                    <div class="proto-icon">🗄️</div>
-                    <h3>Gestión Descentralizada</h3>
-                    <p>Usa gestores de contraseñas cifrados en la nube local (ej. Bitwarden) con llaves maestras complejas de alta entropía.</p>
-                </div>
-                <div class="proto-card">
-                    <div class="proto-icon">⚙️</div>
-                    <h3>Hardening de Cuentas</h3>
-                    <p>Audita los permisos de privacidad, bloquea la indexación de tus perfiles en Google y restringe el alcance a amigos reales.</p>
-                </div>
-                <div class="proto-card">
-                    <div class="proto-icon">📉</div>
-                    <h3>Minimización de Datos</h3>
-                    <p>Desactiva los metadatos de geolocalización EXIF en tus fotografías y evita registrar redes Wi-Fi públicas abiertas.</p>
+                <!-- Caso Real -->
+                <div class="bg-white rounded-2xl p-7 card">
+                    <h3 class="text-2xl font-bold text-gradient mb-4 text-center">📖 Caso Real: Sony Pictures</h3>
+                    <img src="https://images.unsplash.com/photo-1516321497487-e288fb19715f?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80" alt="Sony Pictures" class="w-full h-52 object-cover rounded-xl mb-5 img-hover">
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        En 2014, atacantes enviaron correos falsos simulando alertas de seguridad. Un empleado confundido ingresó sus datos.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Robaron <strong>100 terabytes</strong> de información confidencial: correos, guiones y datos de empleados, deteniendo operaciones completas.
+                    </p>
+                    <div class="bg-yellow-50 p-4 rounded-xl border-l-4 border-yellow-500">
+                        <p class="font-medium text-yellow-800">Lección: Un solo descuido puede causar daños millonarios.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section id="legales" class="split-section tech-bg">
-        <div class="container split-container">
-            <div class="split-text">
-                <span class="section-tag tag-law">MARCO JURÍDICO</span>
-                <h2>Consecuencias Legales en México</h2>
-                <p>La legislación penal federal y local ha evolucionado para perseguir y castigar severamente las conductas ilícitas cometidas en el ciberespacio.</p>
+            <!-- Referencias -->
+            <div class="bg-white rounded-2xl p-7 card">
+                <h3 class="text-xl font-bold text-gradient mb-4">📚 Referencias</h3>
+                <ul class="text-sm text-gray-700 space-y-2 list-disc list-inside">
+                    <li><a href="https://smowl.net/es/blog/privacidad-digital/" target="_blank" class="text-primary hover:underline">SMOWL - Privacidad digital</a></li>
+                    <li><a href="https://concepto.de/privacidad-digital/" target="_blank" class="text-primary hover:underline">Concepto.de - Definición</a></li>
+                    <li><a href="https://www.fortinet.com/lat/resources/cyberglossary/phishing" target="_blank" class="text-primary hover:underline">Fortinet - ¿Qué es el phishing?</a></li>
+                    <li><a href="https://revista.unir.net/derecho/suplantacion-identidad-redes-sociales/" target="_blank" class="text-primary hover:underline">UNIR - Suplantación de identidad</a></li>
+                    <li><a href="https://mexico.justia.com/federales/codigos/codigo-penal-federal/libro-segundo/titulo-noveno/capitulounico/articulo-211-bis/" target="_blank" class="text-primary hover:underline">Justia México - Artículo 211 Bis</a></li>
+                    <li><a href="https://esemanal.mx/tecnologia/mexico-acumula-mas-de-40-mil-millones-de-intentos-de-ciberataques/" target="_blank" class="text-primary hover:underline">eSemanal - Estadísticas</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sección de Comentarios -->
+        <section id="comentarios" class="tab-content">
+            <div class="bg-white rounded-2xl p-8 card">
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient mb-8 text-center">💬 Comentarios</h2>
                 
-                <div class="timeline-law">
-                    <div class="law-point">
-                        <h4>Acceso Ilícito (Art. 211 Bis CPF)</h4>
-                        <p>Modificar, destruir o vulnerar sistemas de información o cuentas privadas sin autorización se sanciona con penas de hasta 2 años de prisión.</p>
-                    </div>
-                    <div class="law-point">
-                        <h4>Ley Olimpia</h4>
-                        <p>Sanciona penalmente a quienes divulguen, compartan o expongan contenido íntimo o sexual sin el consentimiento expreso, con penas de 3 a 6 años de cárcel.</p>
-                    </div>
-                    <div class="law-point">
-                        <h4>Suplantación de Identidad</h4>
-                        <p>La creación de perfiles falsos con fines de lucro, extorsión o daño moral se tipifica como delito grave en múltiples estados con penas restrictivas de libertad.</p>
+                <!-- Formulario -->
+                <div class="bg-gray-50 p-6 rounded-xl mb-8">
+                    <h3 class="text-xl font-semibold mb-4">Deja tu opinión</h3>
+                    <div class="space-y-4">
+                        <input type="text" id="nombre" placeholder="Tu nombre" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <textarea id="comentario" rows="3" placeholder="Escribe tu comentario aquí..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        <button onclick="agregarComentario()" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                            <i class="fa fa-paper-plane mr-2"></i> Enviar comentario
+                        </button>
                     </div>
                 </div>
-            </div>
-            <div class="split-image image-rounded" style="background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=650');"></div>
-        </div>
-    </section>
 
-    <section id="datos" class="stats-dark-section">
-        <div class="container">
-            <div class="center-title">
-                <span class="section-tag tag-data">MÉTRICAS METRICAS DE AMENAZA</span>
-                <h2>Panorama de Riesgo Real</h2>
-            </div>
-            
-            <div class="metrics-wrapper">
-                <div class="metric-node">
-                    <div class="node-visual circulo-cyber">
-                        <span class="node-number">40.6B</span>
-                    </div>
-                    <h4>Ataques Registrados</h4>
-                    <p>Intentos de ciberataques detectados en territorio mexicano en el último periodo analizado.</p>
-                </div>
-
-                <div class="metric-node">
-                    <div class="node-visual barra-cyber">
-                        <span class="node-number">74%</span>
-                    </div>
-                    <h4>El Factor Humano</h4>
-                    <p>De las intrusiones exitosas a nivel global involucran errores de configuración o contraseñas débiles.</p>
-                </div>
-
-                <div class="metric-node">
-                    <div class="node-visual card-darkweb">
-                        <span class="price-tag">$15 USD</span>
-                    </div>
-                    <h4>Costo en Dark Web</h4>
-                    <p>Precio promedio en mercados negros por paquetes masivos de credenciales corporativas y personales.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="comentarios" class="chat-section">
-        <div class="container chat-container">
-            <div class="chat-sidebar">
-                <span class="live-indicator">● EN VIVO</span>
-                <h3>Foro de Opinión Anónimo</h3>
-                <p>Tu privacidad es lo primero. Los mensajes enviados se procesan de forma cifrada y local en tu navegador.</p>
-                <div class="shield-badge">🛡️ TLS 1.3 Activo</div>
-            </div>
-
-            <div class="chat-main">
-                <div class="chat-box" id="listaComentarios">
-                    </div>
-                
-                <form id="formComentario" class="chat-input-area">
-                    <textarea id="comentarioTexto" placeholder="Escribe un comentario reflexivo..." maxlength="280" required></textarea>
-                    <div class="chat-footer-controls">
-                        <span id="contador" class="char-counter">0 / 280</span>
-                        <button type="submit" class="btn-send">Enviar Mensaje</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="cyber-footer">
-        <div class="container">
-            <p><strong>Fuentes de Consulta de Ingeniería:</strong> Concepto.de (2024) | eSemanal (2026) | Fortinet Cyber Glossary | Justia México | SMOWL | UNIR</p>
-            <p class="copyright">&copy; 2026 Plataforma de Seguridad Digital. Desarrollo Académico de Concientización.</p>
-        </div>
-    </footer>
-
-    <script src="comentarios.js"></script>
-</body>
-</html>
+                <!-- Lista de comentarios -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Comentarios recientes</h3>
+                    <div id="lista-comentarios" class="space-y-5">
+                         <div class="p-5 bg-gray-50 rounded-xl border-l-4 border-primary">
+                             <div class="flex items-center gap-3 mb-2">
+                                 <i class="fa fa-user-circle text-2xl text-gray-500"></i>
+                                 <span class="font-semibold text-gray-800">Ana López</span>
+                                 <span class="text-xs text-gray-500">• Hace 2 días</span>
+                             </div>
+                             <p class="text-gray-700">Muy útil la información. Nunca me había dado cuenta de lo importante que es configurar la privacidad correctamente.</p>
+                         </div>
+                         <div class="p-5 bg-gray-50 rounded-xl border-l-4 border-accent">
+                             <div class="flex items-center gap-3 mb-2">
+                                 <i class="fa fa-user-circle text-2xl text-gray-500"></i>
+                                 <span class="font-semibold text-gray-800">Carlos Méndez</span>
+                                 <span class="text-xs text-gray-500">• Hace 5 días</span>
+                             </div>
+                             <p class="text-gray-700">El caso de Sony es impresionante. Muestra que cualquier persona puede ser víctima si no tiene cuidado.</p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </section>
+     </main>
+     <footer class="bg-dark text-white py-8 text-center">
+         <p class="text-lg font-medium">© 2026 Investigación sobre Privacidad Digital</p>
+         <p class="text-gray-400 mt-2">Información verificada y confiable</p>
+     </footer>
+     <!-- Script para pestañas y comentarios -->
+     <script>
+         function openTab(tabName) {
+             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+             document.querySelectorAll('.tab-btn').forEach(btn => {
+                 btn.classList.remove('bg-primary', 'text-white', 'shadow-md');
+                 btn.classList.add('hover:bg-gray-100');
+             });
+             document.getElementById(tabName).classList.add('active');
+             const btnActivo = document.getElementById('tab-' + tabName);
+             btnActivo.classList.add('bg-primary', 'text-white', 'shadow-md');
+             btnActivo.classList.remove('hover:bg-gray-100');
+         }
+         function agregarComentario() {
+             const nombre = document.getElementById('nombre').value.trim();
+             const texto = document.getElementById('comentario').value.trim();
+             
+             if (!nombre || !texto) {
+                 alert('Por favor completa todos los campos');
+                 return;
+             }
+             const contenedor = document.getElementById('lista-comentarios');
+             const nuevoComentario = document.createElement('div');
+             nuevoComentario.className = 'p-5 bg-gray-50 rounded-xl border-l-4 border-green-500';
+             nuevoComentario.innerHTML = `
+                 <div class="flex items-center gap-3 mb-2">
+                     <i class="fa fa-user-circle text-2xl text-gray-500"></i>
+                     <span class="font-semibold text-gray-800">${nombre}</span>
+                     <span class="text-xs text-gray-500">• Ahora mismo</span>
+                 </div>
+                 <p class="text-gray-700">${texto}</p>
+             `;
+             contenedor.prepend(nuevoComentario);
+             document.getElementById('nombre').value = '';
+             document.getElementById('comentario').value = '';
+         }
+     </script>
+ </body>
+ </html>
